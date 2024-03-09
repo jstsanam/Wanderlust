@@ -1,26 +1,31 @@
-const mongoose = require("mongoose");
-const initData = require("./data.js");
-const Listing = require("../models/listing.js");
+import mongoose from "mongoose";
+import sampleListings from "./data.js";
+import Listing from "../models/listing.js";
+import logger from "../logger/logger.js";
+import dotenv from "dotenv";
+dotenv.config();
 
-const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
+const DATABASE_URL = process.env.DATABASE_URL;
 
-main()
-  .then(() => {
-    console.log("connected to DB");
-  })
-  .catch((err) => {
-    console.log(err);
-});
-console.log(initData);
-
-async function main() {
-  await mongoose.connect(MONGO_URL);
+async function connectDB() {
+  await mongoose.connect(DATABASE_URL);
 }
 
 const initDB = async () => {
-    await Listing.deleteMany({});
-    await Listing.insertMany(initData.data);
-    console.log("data was initialized");
-};
+  try {
+    await connectDB();
+    logger.info("Connected to DB");
+    // Set REINITIATE_DB to true in the .env file to clear the database 
+    // and reinitialize it with predefined values
+    if (process.env.REINITIATE_DB === 'true') {
+      await Listing.deleteMany({});
+      logger.info("Deleted the listings data")
+      await Listing.insertMany(sampleListings);
+      logger.info("Inserted sample listings")
+    }
+  } catch (ex) {
+    logger.error(err);
+  }
+}
 
-initDB();
+export default initDB;
