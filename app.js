@@ -7,6 +7,8 @@ import initDB from "./init/index.js";
 import listingRoute from "./routes/listingRoute.js";
 import indexRoute from "./routes/indexRoute.js";
 import ExpressError from "./utils/expressError.js";
+import flash from "connect-flash";
+import sessionMiddleware from "./middleware/sessionMiddleware.js";
 
 const app = express();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -21,6 +23,16 @@ app.use(express.static(path.join(__dirname, "/public")));
 
 // Initialising database
 initDB();
+
+app.use(sessionMiddleware);
+
+// Implementing flash
+app.use(flash());
+app.use((req, res, next) => {
+  res.locals.success = req.flash("success");
+  res.locals.error = req.flash("error");
+  next();
+})
 
 // Routes
 app.use("/", indexRoute)
