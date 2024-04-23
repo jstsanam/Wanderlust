@@ -7,8 +7,8 @@ import initDB from "./init/index.js";
 import listingRoute from "./routes/listingRoute.js";
 import indexRoute from "./routes/indexRoute.js";
 import ExpressError from "./utils/expressError.js";
-import session from "express-session";
 import flash from "connect-flash";
+import sessionMiddleware from "./middleware/sessionMiddleware.js";
 
 const app = express();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -24,18 +24,7 @@ app.use(express.static(path.join(__dirname, "/public")));
 // Initialising database
 initDB();
 
-// Session options
-const sessionOptions = {
-  secret: "sanamSecretCode",
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-    expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-    httpOnly: true,
-  }
-}
-app.use(session(sessionOptions));
+app.use(sessionMiddleware);
 
 // Implementing flash
 app.use(flash());
