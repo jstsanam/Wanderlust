@@ -9,10 +9,10 @@ import userRoute from "./routes/userRoute.js";
 import indexRoute from "./routes/indexRoute.js";
 import ExpressError from "./utils/expressError.js";
 import flash from "connect-flash";
-import sessionMiddleware from "./middleware/sessionMiddleware.js";
+import sessionMiddleware from "./middlewares/sessionMiddleware.js";
 import passport from "passport";
 import LocalStrategy from "passport-local";
-import User from "./models/user.js";
+import User from "./schemas/userSchema.js";
 
 const app = express();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);
@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 // Routes
 app.use("/", indexRoute)
 app.use("/listings", listingRoute)
-app.use("/", userRoute)
+app.use("/auth", userRoute)
 
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page not found !"));

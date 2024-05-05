@@ -1,5 +1,5 @@
 import express from "express";
-import User from "../models/user.js";
+import User from "../schemas/userSchema.js";
 import wrapAsync from "../utils/wrapAsync.js";
 import passport from "passport";
 
@@ -14,12 +14,12 @@ userRoute.post("/signup", wrapAsync(async (req, res) => {
         let { username, email, password } = req.body;
         const newUser = new User({ email, username });
         const registeredUser = await User.register(newUser, password);
-        console.log({ registeredUser });
-        req.flash("success", "User registered successfully ✅");
+        console.log(`${registeredUser.username} registered`);
+        req.flash("success", `Welcome to Wanderlust ${registeredUser.username} 🎉`);
         res.redirect("/listings");
     } catch (err) {
         req.flash("error", err.message);
-        res.redirect("/signup");
+        res.redirect("/auth/signup");
     }
 }));
 
@@ -29,7 +29,7 @@ userRoute.get("/signin", (req, res) => {
 
 userRoute.post("/signin",
     passport.authenticate("local", {   // route middleware to authenticate user
-        failureRedirect: "/signin",
+        failureRedirect: "/auth/signin",
         failureFlash: true
     }),
     async (req, res) => {
