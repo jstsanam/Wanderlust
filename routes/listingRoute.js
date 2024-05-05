@@ -1,9 +1,9 @@
 import express from "express";
-import Listing from "../models/listing.js"
-import { listingSchema } from "../schema.js";
-import { reviewSchema } from "../schema.js";
+import Listing from "../schemas/listingSchema.js"
+import { listingSchema } from "../validationsForSchemas.js";
+import { reviewSchema } from "../validationsForSchemas.js";
 import wrapAsync from "../utils/wrapAsync.js";
-import Review from "../models/reviews.js"
+import Review from "../schemas/reviewSchema.js"
 
 const listingRoute = express.Router();
 
