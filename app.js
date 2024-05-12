@@ -9,7 +9,7 @@ import userRoute from "./routes/userRoute.js";
 import indexRoute from "./routes/indexRoute.js";
 import ExpressError from "./utils/expressError.js";
 import flash from "connect-flash";
-import sessionMiddleware from "./middlewares/sessionMiddleware.js";
+import { sessionMiddleware } from "./middlewares/sessionMiddleware.js";
 import passport from "passport";
 import LocalStrategy from "passport-local";
 import User from "./schemas/userSchema.js";
@@ -41,8 +41,10 @@ passport.deserializeUser(User.deserializeUser());     // user related info sessi
 // Implementing flash messages
 app.use(flash());
 app.use((req, res, next) => {
+  //locals ase variables jo hr jgah accessible h
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
+  res.locals.currUser = req.user;
   next();
 })
 

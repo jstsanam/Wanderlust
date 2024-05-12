@@ -23,7 +23,7 @@ const initDB = async () => {
       await Listing.insertMany(sampleListings);
       logger.info("Inserted sample listings")
     }
-  } catch (ex) {
+  } catch (err) {
     logger.error(err);
   }
 }

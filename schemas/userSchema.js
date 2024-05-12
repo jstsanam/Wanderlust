@@ -9,6 +9,7 @@ const userSchema = new Schema({
     }
 });
 
-userSchema.plugin(passportLocalMongoose); //applies the passportLocalMongoose plugin to the userSchema, making user authentication easier with Passport.js in Node.js applications
+//plugin automatically username, salt, hash add krdega passwrd m, scratch se build ni krna pdega
+userSchema.plugin(passportLocalMongoose);
 const User = mongoose.model("User", userSchema);
 export default User;
