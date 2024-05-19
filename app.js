@@ -12,7 +12,7 @@ import flash from "connect-flash";
 import { sessionMiddleware } from "./middlewares/sessionMiddleware.js";
 import passport from "passport";
 import LocalStrategy from "passport-local";
-import User from "./schemas/userSchema.js";
+import User from "./models/userSchema.js";
 
 const app = express();
 const __dirname = path.dirname(new URL(import.meta.url).pathname);

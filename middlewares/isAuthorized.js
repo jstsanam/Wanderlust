@@ -1,5 +1,5 @@
-import Listing from "../schemas/listingSchema.js";
-import Review from "../schemas/reviewSchema.js";
+import Listing from "../models/listingSchema.js";
+import Review from "../models/reviewSchema.js";
 
 const isListingAuthor = async (req, res, next) => {
     let { id } = req.params;
