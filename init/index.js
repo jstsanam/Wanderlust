@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import sampleListings from "./data.js";
-import Listing from "../schemas/listingSchema.js";
+import Listing from "../models/listingSchema.js";
 import logger from "../logger/logger.js";
 import dotenv from "dotenv";
 dotenv.config();
