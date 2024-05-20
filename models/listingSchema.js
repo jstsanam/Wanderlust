@@ -28,7 +28,7 @@ const listingSchema = new Schema({
     }
 });
 
-//will delete reviews associated with listings
+// Deletes the reviews associated with listings
 listingSchema.post("findOneAndDelete", async (listing) => {
     if (listing) {
         await Review.deleteMany({ reviews: { $in: listing.reviews } });

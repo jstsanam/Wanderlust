@@ -30,7 +30,6 @@ const showListing = async (req, res) => {
 const createNewListing = async (req, res, next) => {
     let url = req.file.path;
     let filename = req.file.filename;
-    console.log(url, "-------", filename);
     const newListing = new Listing(req.body.listing);
     newListing.owner = req.user._id;
     newListing.image = { url, filename };

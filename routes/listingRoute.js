@@ -19,7 +19,7 @@ import multer from "multer";
 import { storage } from "../cloudConfig.js";
 
 const listingRoute = express.Router();
-//multer is node.js middleware for handling multipart/form-data (specially upload media)
+// multer is node.js middleware for handling multipart/form-data (specially upload media)
 const upload = multer({ storage });
 
 listingRoute
