@@ -22,10 +22,14 @@ const listingSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Review",
         }
-    ]
+    ],
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
-//will delete reviews associated with listings
+// this will delete reviews associated with listings
 listingSchema.post("findOneAndDelete", async (listing) => {
     if (listing) {
         await Review.deleteMany({ reviews: { $in: listing.reviews } });
