@@ -41,7 +41,7 @@ passport.deserializeUser(User.deserializeUser());     // user related info sessi
 // Implementing flash messages
 app.use(flash());
 app.use((req, res, next) => {
-  //locals ase variables jo hr jgah accessible h
+  // locals are the variables which are accessible in the whole code
   res.locals.success = req.flash("success");
   res.locals.error = req.flash("error");
   res.locals.currUser = req.user;

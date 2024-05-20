@@ -3,7 +3,7 @@ import Listing from "../schemas/listingSchema.js"
 import wrapAsync from "../utils/wrapAsync.js";
 import Review from "../schemas/reviewSchema.js";
 import { isAuthenticated } from "../middlewares/isAuthenticated.js";
-import { isListingAuthor, isReviewAuthor } from "../middlewares/isAuthorized.js";
+import { isUserListingOwner, isUserReviewAuthor } from "../middlewares/isAuthorized.js";
 import { validateListing } from "../middlewares/validateListing.js";
 import { validateReview } from "../middlewares/validateReview.js";
 
@@ -51,7 +51,7 @@ listingRoute.post("/",
 
 listingRoute.get("/:id/edit",
   isAuthenticated,
-  isListingAuthor,
+  isUserListingOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
@@ -64,7 +64,7 @@ listingRoute.get("/:id/edit",
 
 listingRoute.put("/:id",
   isAuthenticated,
-  isListingAuthor,
+  isUserListingOwner,
   validateListing,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
@@ -75,7 +75,7 @@ listingRoute.put("/:id",
 
 listingRoute.delete("/:id",
   isAuthenticated,
-  isListingAuthor,
+  isUserListingOwner,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
@@ -100,7 +100,7 @@ listingRoute.post("/:id/reviews",
 
 listingRoute.delete("/:id/reviews/:reviewId",
   isAuthenticated,
-  isReviewAuthor,
+  isUserReviewAuthor,
   wrapAsync(async (req, res) => {
     let { id, reviewId } = req.params;
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
@@ -111,4 +111,4 @@ listingRoute.delete("/:id/reviews/:reviewId",
 
 export default listingRoute;
 
-//Mongo $pull matches with value and deletes.
+// Mongo $pull matches with value and deletes.
