@@ -6,7 +6,6 @@ import logger from "./logger/logger.js";
 import initDB from "./init/index.js";
 import listingRoute from "./routes/listingRoute.js";
 import userRoute from "./routes/userRoute.js";
-import indexRoute from "./routes/indexRoute.js";
 import ExpressError from "./utils/expressError.js";
 import flash from "connect-flash";
 import { sessionMiddleware } from "./middlewares/sessionMiddleware.js";
@@ -49,7 +48,6 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.use("/", indexRoute)
 app.use("/listings", listingRoute)
 app.use("/auth", userRoute)
 

@@ -10,7 +10,6 @@ body {
 }
 
 /* navbar */
-
 .navbar {
   height: 5rem;
   background-color: white;
@@ -26,7 +25,6 @@ body {
 }
 
 /* footer */
-
 .f-info-links a {
   text-decoration: none;
   color: #222222;
@@ -61,7 +59,6 @@ body {
 }
 
 /* cards */
-
 .listing-card {
   border: none !important;
   margin-bottom: 2rem;
@@ -86,7 +83,6 @@ body {
 }
 
 /* card effect */
-
 .card-img-overlay {
   opacity: 0;
 }
@@ -97,21 +93,18 @@ body {
 }
 
 /* new page */
-
 .add-btn {
   background-color: #fe424d !important;
   border: none !important;
 }
 
 /* edit page */
-
 .edit-btn {
   background-color: #fe424d !important;
   border: none !important;
 }
 
 /* show page */
-
 .show-img {
   height: 30vh;
 }
@@ -123,4 +116,10 @@ body {
 .show-card {
   padding-left: 0;
   padding-right: 0;
+}
+
+/* map */
+#map {
+  height: 400px;
+  width: 80vh;
 }
