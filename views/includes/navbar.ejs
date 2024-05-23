@@ -6,17 +6,23 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
+        <a class="nav-link" href="/listings">Explore Places</a>
       </div>
       <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Add your hotel</a>
+        <form class="d-flex" role="search">
+          <input class="form-control me-2 search-input" type="search" placeholder="Search Destinations">
+          <button class="btn btn-outline-danger" type="submit">Search</button>
+        </form>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Add Destination</a>
         <% if(!currUser) { %>
-          <a class="nav-link" href="/auth/signup">Sign up</a>
-          <a class="nav-link" href="/auth/signin">Log in</a>
-        <% } %>
-        <% if(currUser) { %>
-          <a class="nav-link" href="/auth/signout">Log out</a>
-        <% } %>
+          <a class="nav-link" href="/auth/signup">Sign Up</a>
+          <a class="nav-link" href="/auth/signin">Log In</a>
+          <% } %>
+            <% if(currUser) { %>
+              <a class="nav-link" href="/auth/signout">Log Out</a>
+              <% } %>
       </div>
     </div>
   </div>
