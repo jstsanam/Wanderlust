@@ -10,8 +10,8 @@ const listingSchema = new Schema({
     },
     description: String,
     image: {
-       url: String,
-       filename: String,
+        url: String,
+        filename: String,
     },
     price: Number,
     location: String,
@@ -25,6 +25,18 @@ const listingSchema = new Schema({
     owner: {
         type: Schema.Types.ObjectId,
         ref: "User"
+    },
+    // GeoJSON is a format for storing geographic points and polygons.
+    geometry: {
+        type: {
+            type: String,
+            enum: [ 'Point' ],
+            required: true
+        },
+        coordinates: {
+            type: [ Number ],
+            required: true
+        }
     }
 });
 

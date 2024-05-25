@@ -43,6 +43,7 @@ listingRoute
   .put(
     isAuthenticated,
     isUserListingOwner,
+    upload.single('listing[image]'),
     validateListing,
     wrapAsync(editListing)
   )
