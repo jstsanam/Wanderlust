@@ -123,3 +123,34 @@ body {
   height: 400px;
   width: 80vh;
 }
+
+/* filters */
+#filters {
+  display: flex;
+  flex-wrap: wrap; 
+  align-items: center;
+  margin-left: 0.7rem;
+}
+
+.filter {
+  text-align: center;
+  margin-right: 1.5rem;
+  margin-top: 1.5rem;
+  opacity: 0.6;
+}
+
+.filter:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.tax-info {
+  display: none;
+}
+
+.tax-toggle {
+  border: 1px solid lightgray;
+  border-radius: 0.5rem;
+  height: 3.5rem;
+  padding: 1rem;
+}

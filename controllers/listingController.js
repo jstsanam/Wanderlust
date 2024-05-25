@@ -1,12 +1,13 @@
 import Listing from "../models/listingSchema.js";
 import Review from "../models/reviewSchema.js";
 import mbxGeocoding from "@mapbox/mapbox-sdk/services/geocoding.js";
+import filterOptions from "../constants/filters.js";
 const mapToken = process.env.MAPBOX_PUBLIC_TOKEN;
 const geocodingClient = mbxGeocoding({ accessToken: mapToken })
 
 const listingIndexPage = async (req, res) => {
     const allListings = await Listing.find({});
-    res.render("listings/index.ejs", { allListings });
+    res.render("listings/index.ejs", { allListings, filterOptions });
 };
 
 const showNewListing = (req, res) => {
