@@ -26,7 +26,7 @@ const showListing = async (req, res) => {
         .populate("owner");
     if (!listing) {
         req.flash("error", "Listing doesn't exist anymore 🤷🏻‍♀️");
-        res.redirect("/listings");
+        res.redirect("/");
     }
     res.render("listings/show.ejs", { listing });
 }
@@ -52,7 +52,7 @@ const createNewListing = async (req, res, next) => {
     newListing.geometry = response.body.features[0].geometry;
     await newListing.save();
     req.flash("success", "New listing added successfully ✅");
-    res.redirect("/listings");
+    res.redirect("/");
 }
 
 const showEditListing = async (req, res) => {
@@ -60,7 +60,7 @@ const showEditListing = async (req, res) => {
     const listing = await Listing.findById(id);
     if (!listing) {
         req.flash("error", "Listing doesn't exist anymore 🤷🏻‍♀️");
-        res.redirect("/listings");
+        res.redirect("/");
     }
     // setting all images quality to some desired pixels
     let originalImageUrl = listing.image.url;
@@ -80,7 +80,7 @@ const editListing = async (req, res) => {
         await listing.save();
     }
     req.flash("success", "Listing updated sucessfully ✅");
-    res.redirect(`/listings/${id}`);
+    res.redirect(`/${id}`);
 }
 
 const deleteListing = async (req, res) => {
@@ -88,7 +88,7 @@ const deleteListing = async (req, res) => {
     let deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
     req.flash("success", "Listing deleted sucessfully ✅");
-    res.redirect("/listings");
+    res.redirect("/");
 }
 
 const createReview = async (req, res) => {
@@ -99,7 +99,7 @@ const createReview = async (req, res) => {
     await newReview.save();
     await listing.save();
     req.flash("success", "Review added successfully 💜");
-    res.redirect(`/listings/${listing.id}`);
+    res.redirect(`/${listing.id}`);
 }
 
 const deleteReview = async (req, res) => {
@@ -107,7 +107,7 @@ const deleteReview = async (req, res) => {
     await Listing.findByIdAndUpdate(id, { $pull: { reviews: reviewId } });
     await Review.findByIdAndDelete(reviewId);
     req.flash("success", "Review deleted successfully ✅");
-    res.redirect(`/listings/${id}`)
+    res.redirect(`/${id}`)
 }
 
 export {

@@ -48,7 +48,7 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.use("/listings", listingRoute)
+app.use("/", listingRoute)
 app.use("/auth", userRoute)
 
 app.all("*", (req, res, next) => {
