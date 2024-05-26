@@ -8,7 +8,7 @@ const isUserListingOwner = async (req, res, next) => {
     // Checking if user is actual owner of listing or not
     if (!listing.owner.equals(res.locals.currUser._id)) {
         req.flash("error", "Only owners can update the listing 🙅🏻‍♀️");
-        return res.redirect(`/listings/${id}`);
+        return res.redirect(`/${id}`);
     }
     next();
 }
@@ -20,7 +20,7 @@ const isUserReviewAuthor = async (req, res, next) => {
     // Checking if user is actual author of review or not
     if (!review.author.equals(res.locals.currUser._id)) {
         req.flash("error", "Only authors can update the review 🙅🏻‍♀️");
-        return res.redirect(`/listings/${id}`);
+        return res.redirect(`/${id}`);
     }
     next();
 }

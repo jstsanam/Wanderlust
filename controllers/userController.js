@@ -15,7 +15,7 @@ const signup = async (req, res) => {
                 return next(err);
             }
             req.flash("success", `Welcome to Wanderlust ${registeredUser.username} 🧚🏻‍♀️`)
-            res.redirect("/listings");
+            res.redirect("/");
         })
     } catch (err) {
         req.flash("error", err.message);
@@ -29,7 +29,7 @@ const renderSigninPage = (req, res) => {
 
 const signin = async (req, res) => {
     req.flash("success", "Welcome back to Wanderlust 💁🏻‍♀️");
-    let redirectUrl = res.locals.redirectUrl || "/listings";
+    let redirectUrl = res.locals.redirectUrl || "/";
     res.redirect(redirectUrl);
 }
 

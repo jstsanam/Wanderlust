@@ -28,9 +28,9 @@
     <br />
     <% if(currUser && currUser._id.equals(listing.owner._id)) { %>
       <div class="btns">
-        <a href="/listings/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
+        <a href="/<%= listing._id %>/edit" class="btn btn-dark col-1 offset-3 edit-btn">Edit</a>
 
-        <form method="POST" action="/listings/<%= listing._id %>?_method=DELETE">
+        <form method="POST" action="/<%= listing._id %>?_method=DELETE">
           <button class="btn btn-dark offset-5">Delete</button>
         </form>
       </div>
@@ -40,7 +40,7 @@
           <% if(currUser) { %>
             <hr>
             <h4>Leave a review :)</h4>
-            <form action="/listings/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
+            <form action="/<%= listing._id %>/reviews" method="POST" novalidate class="needs-validation">
               <div class="mb-3 mt-3">
                 <label for="rating" class="form-label">Rating</label>
                 <fieldset class="starability-grow">
@@ -89,7 +89,7 @@
                           </p>
                         </div>
                         <% if(currUser && currUser._id.equals(review.author._id)) { %>
-                          <form action="/listings/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
+                          <form action="/<%= listing._id %>/reviews/<%= review._id %>?_method=DELETE"
                             class="mb-3" method="POST">
                             <button class="btn btn-sm btn-dark">Delete</button>
                           </form>
